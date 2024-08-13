@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 class WeatherModel {
   final String cityName;
-  final String data;
+  final DateTime data;
   final String? image;
   final double temp;
   final double maxTemp;
@@ -22,7 +22,9 @@ class WeatherModel {
     return WeatherModel(
       image: json['forecast']['forecastday'][0]['day']['condition']['icon'],
       cityName: json['location']['name'],
-      data: json['current']['last_updated'],
+      data: DateTime.parse(
+        json['current']['last_updated'],
+      ),
       temp: json['current']['temp_c'],
       maxTemp: json['forecast']['forecastday'][0]['day']['maxtemp_c'],
       minTemp: json['forecast']['forecastday'][0]['day']['mintemp_c'],
